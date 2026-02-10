@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Parcel {
+  id          Int      @id @default(autoincrement())
+  code        String   @unique
+  areaM2      Int
+  priceCop    Int
+  status      String   @default("AVAILABLE")
+  coordinates String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ConstructionProgress {
+  id          Int      @id @default(autoincrement())
+  category    String
+  description String
+  percentage  Int
+  date        DateTime
+  mediaType   String
+  mediaUrl    String
+  title       String
+  createdAt   DateTime @default(now())
+}
